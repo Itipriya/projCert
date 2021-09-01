@@ -1,4 +1,5 @@
-FROM devopsedu/webapp
-ADD website /var/www/html
-RUN rm /var/www/html/index.html
-CMD apachectl -D FOREGROUND
+FROM devopsedu/webapp:latest
+COPY website /var/www/html/
+RUN apt update && \
+    apt install -y php
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
